@@ -1,4 +1,7 @@
 
+use std::fmt;
+use std::fmt::Formatter;
+
 #[derive(Debug)]
 pub enum Command {
     RETRIEVE,
@@ -18,18 +21,12 @@ pub enum ParseError {
     NoPatternDetectedError,
 }
 
-impl ParseError {
-    pub fn get_error_string(&self) -> String {
+impl fmt::Display for ParseError {
+    fn fmt(&self, f: &mut Formatter) -> fmt::Result {
         match *self {
-            ParseError::TooShortMessageError => {
-                "Input message is too short.".to_string()
-            },
-            ParseError::RetrieveSyntaxError => {
-                "Wrong RETRIEVE syntax.".to_string()
-            },
-            ParseError::NoPatternDetectedError => {
-                "No pattern detected.".to_string()
-            },
+            ParseError::TooShortMessageError => write!(f, "Input message is too short."),
+            ParseError::RetrieveSyntaxError => write!(f, "Wrong RETRIEVE syntax."),
+            ParseError::NoPatternDetectedError => write!(f, "No pattern detected."),
         }
     }
 }
