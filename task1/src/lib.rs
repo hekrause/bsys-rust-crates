@@ -1,6 +1,7 @@
 
 use std::fmt;
 use std::fmt::Formatter;
+use std::error::Error;
 
 #[derive(Debug)]
 pub enum Command {
@@ -27,6 +28,16 @@ impl fmt::Display for ParseError {
             ParseError::TooShortMessageError => write!(f, "Input message is too short."),
             ParseError::RetrieveSyntaxError => write!(f, "Wrong RETRIEVE syntax."),
             ParseError::NoPatternDetectedError => write!(f, "No pattern detected."),
+        }
+    }
+}
+
+impl Error for ParseError {
+    fn description(&self) -> &str {
+        match *self {
+            ParseError::TooShortMessageError => "Input message is too short.",
+            ParseError::RetrieveSyntaxError => "Wrong RETRIEVE syntax.",
+            ParseError::NoPatternDetectedError => "No pattern detected.",
         }
     }
 }
