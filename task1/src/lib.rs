@@ -24,9 +24,9 @@ pub enum ParseError {
 impl fmt::Display for ParseError {
     fn fmt(&self, f: &mut Formatter) -> fmt::Result {
         match *self {
-            ParseError::TooShortMessageError => write!(f, "Input message is too short.\n"),
-            ParseError::RetrieveSyntaxError => write!(f, "Wrong RETRIEVE syntax.\n"),
-            ParseError::NoPatternDetectedError => write!(f, "No pattern detected.\n"),
+            ParseError::TooShortMessageError => write!(f, "Input message is too short."),
+            ParseError::RetrieveSyntaxError => write!(f, "Wrong RETRIEVE syntax."),
+            ParseError::NoPatternDetectedError => write!(f, "No pattern detected."),
         }
     }
 }
